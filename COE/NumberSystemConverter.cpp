@@ -545,6 +545,7 @@ void programDisclaimer (){                          //a void function to display
     << "[1] If program ends without the message >> \"[END OF PROGRAM]\":" << std::endl
     << "    (a) Manually reload program and" << std::endl
     << "    (b) Input a smaller number next time" << std::endl << std::endl
+    << "For more info and if you want to learn how the program works, please read the manual :>" << std::endl << std::endl
     << "Rest assured that the program works accurately if program does not encounter any problems" << std::endl << std::endl
     << "Thank you for your time!" << std::endl << std::endl
     << "PRESS [1] TO START THE CONVERTER " << std::endl
@@ -564,4 +565,4 @@ void programDisclaimer (){                          //a void function to display
             error();
             programDisclaimer();
     }
-}//Whaaat
+}
