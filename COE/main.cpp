@@ -29,12 +29,11 @@ int main() {
     cin >> choice;
 
     switch (choice) {
-        case '1':
-            setValues(newNumberSystem);
-            break;
-
         case '2':
             programInfo();
+
+        case '1':
+            setValues(newNumberSystem);
             break;
 
         default:
