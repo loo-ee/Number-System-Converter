@@ -5,7 +5,7 @@
 #include <cmath>
 #include <algorithm>
 
-void programDisclaimer();
+void programInfo();
 void numSys();
 int choices(int num, int num1);
 int numSysDisplayInput(int forSwitch);
@@ -23,7 +23,7 @@ void error();
 void exit();
 
 int main(){                                                      //main function
-    char choice;                                                //user chooses DECIMAL CALCULATOR or NUMBER SYSTEM CONVERTER
+    char choice;                                                //user can proceed to converter or read info about the program
     std::cout << std::endl 
     << "[SELECT ACTION]" << std::endl
     << "[1] Proceed to the converter" << std::endl
@@ -35,7 +35,7 @@ int main(){                                                      //main function
             numSys(); break;
 
         case '2':
-            programDisclaimer(); break;
+            programInfo(); break;
 
         default:
             error();
@@ -323,7 +323,7 @@ void repeat (int num, int num1){                            //options for user a
             cont(num, num1); break;
 
         case '3':
-            programDisclaimer(); break;
+            programInfo(); break;
 
         case '4':
             exit(); break;
@@ -359,7 +359,7 @@ int cont (int num, int num1){                               //continuation after
             numSys(); break;
 
         case '2':
-            programDisclaimer(); break;
+            programInfo(); break;
     }
     return 0;
 }
@@ -522,7 +522,7 @@ void exit (){                                       //function is called when th
     << "[END OF PROGRAM] Thank you for your patronage :>" << std::endl; 
 }
 
-void programDisclaimer (){                          //a void function to display the information of the program
+void programInfo (){                          //a void function to display the information of the program
     char choice;
     std::cout << std::endl
     << "[1] INFO: " << std::endl
@@ -563,6 +563,6 @@ void programDisclaimer (){                          //a void function to display
 
         default:
             error();
-            programDisclaimer();
+            programInfo();
     }
 }
