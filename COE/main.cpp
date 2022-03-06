@@ -404,42 +404,37 @@ long long int hexadecimalConversion(string numString){                  //hexade
 }
 
 void error (){                                       //function is called when user chooses an invalid option
-    std::cout << std::endl
-    << "[ERROR] INVALID INPUT" << std::endl
-    << "Reloading..." << std::endl;
+    cout << "\n[ERROR] INVALID INPUT\n"
+    << "Reloading...\n";
 }
 
 void programInfo (){                          //a void function to display the information of the program
     char choice;
-    std::cout << std::endl
-    << "[1] INFO: " << std::endl
-    << "    Developer name:\tJann Louie Q. Almirante" << std::endl
-    << "    Course:\t\tComputer Engineering I" << std::endl
-    << "    Subject:\t\tCOE 131 | PROGRAMMING LOGIC AND DESIGN" << std::endl
-    << "    Professor:\t\tEng. Don Opada" << std::endl
-    << "    University:\t\tNegros Oriental State University (NORSU)" << std::endl << std::endl
-    << "[2] PPROGRAM CONSISTS OF: " << std::endl
-    << "    (a) CONDITIONAL OPERATORS" << std::endl
-    << "    (b) ARRAYS" << std::endl
-    << "    (c) LOOPS" << std::endl
-    << "    (d) FUNCTIONS" << std::endl
-    << "    (e) POINTERS" << std::endl << std::endl
-    << "[3] CONVERTER INFO:" << std::endl
-    << "    - A program that converts any number system to another number system" << std::endl
-    << "    - Input a number that is not too big for program to work flawlessly" << std::endl
-    << "    - More instructions are stated within the program" << std::endl << std::endl
-    << "FOR CONDITIONAL BUGS: {this is a problem encountered in Hexadecimal conversion}" << std::endl
-    << "[1] If program ends without the message >> \"[END OF PROGRAM]\":" << std::endl
-    << "    (a) Manually reload program and" << std::endl
-    << "    (b) Input a smaller number next time" << std::endl << std::endl
-    << "For more info and if you want to learn how the program works, please read the manual :>" << std::endl << std::endl
-    << "Rest assured that the program works accurately if program does not encounter any problems" << std::endl << std::endl
-    << "Thank you for your time!" << std::endl << std::endl
-    << "PRESS [1] TO START THE CONVERTER " << std::endl
-    << "PRESS [2] TO EXIT PROGRAM" << std::endl
+    
+    cout << "\n[1] INFO:\n"
+    << "    Developer name:\tJann Louie Q. Almirante\n"
+    << "    Course:\t\tComputer Engineering I\n"
+    << "    Subject:\t\tCOE 131 | PROGRAMMING LOGIC AND DESIGN\n"
+    << "    Professor:\t\tEng. Don Opada\n"
+    << "    University:\t\tNegros Oriental State University (NORSU)\n"
+    << "\n[2] PPROGRAM CONSISTS OF:\n"
+    << "    (a) CONDITIONAL OPERATORS\n"
+    << "    (b) ARRAYS\n"
+    << "    (c) LOOPS\n"
+    << "    (d) FUNCTIONS\n"
+    << "    (e) POINTERS\n"
+    << "\n[3] CONVERTER INFO:\n"
+    << "    - A program that converts any number system to another number system\n"
+    << "    - Input a number that is not too big for program to work flawlessly\n"
+    << "    - More instructions are stated within the program\n"
+    << "\nFor more info and if you want to learn how the program works, please read the manual :>\n"
+    << "\nRest assured that the program works accurately if program does not encounter any problems\n"
+    << "\nThank you for your time!\n"
+    << "\nPRESS [1] TO START THE CONVERTER\n"
+    << "PRESS [2] TO EXIT PROGRAM\n"
     << ">> ";
-    std:: cin >> choice;
-    std::cout << "________________________________________________________________________________________________" << std::endl;
+    cin >> choice;
+    cout << "________________________________________________________________________________________________\n";
 
     switch (choice){
         case '1':
