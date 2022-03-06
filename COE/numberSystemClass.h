@@ -8,7 +8,6 @@ private:
     char userAction;
     string stringResult, stringValue;
 
-
 public:
     NumberSystem() {
         this->intResult = 0;
