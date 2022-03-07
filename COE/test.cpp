@@ -3,12 +3,18 @@
 using namespace std;
 
 int main () {
-    long long int val;
-    NumberSystem newClass;
+    // long long int val;
+    // NumberSystem newClass;
 
-    cout << "Enter a long long int: ";
-    cin >> val;
+    // cout << "Enter a long long int: ";
+    // cin >> val;
 
-    newClass.setIntResult(val);
-    cout << "Value: " << newClass.getIntResult() << endl;
+    // newClass.setIntResult(val);
+    // cout << "Value: " << newClass.getIntResult() << endl;
+    int test;
+
+    cout << "Enter a int: ";
+    cin >> test;
+
+
 }
