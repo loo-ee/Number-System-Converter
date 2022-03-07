@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cmath>
 #include "numberSystemClass.h"
+#include "exceptionHandling.h"
 using namespace std;
 
 void error();
@@ -17,6 +18,9 @@ long long int binaryConversion(long long int);
 long long int octalConversion(long long int);
 long long int hexadecimalConversion(string);
 void userAction(NumberSystem &);
+void validateDecimalValue(string);
+void validateBinaryValue(string);
+void validateOctalValue(string);
 
 int main() {
     char choice;
@@ -45,101 +49,84 @@ int main() {
 void setValues(NumberSystem &numberSystem) {
     long long int userIntInput;
     string userStringInput;
+    bool onLoop = true;
 
     numberSystem.setChoice();
 
     switch(numberSystem.getChoiceCombination()) {
-        case 1:
-            cout << "Enter Decimal value: ";
-            cin >> userIntInput;
-            numberSystem.setIntValue(userIntInput);
+        case 1: case 4: case 27: case 256:
+            while (onLoop) {
+                try {
+                    cout << "Enter Decimal value: ";
+                    cin >> userStringInput;
+                    validateDecimalValue(userStringInput);
+                    userIntInput = stoi(userStringInput);
+                    numberSystem.setIntValue(userIntInput);
+                    onLoop = false;
+                }
+                catch (DecimalOverloading error) {
+                    cout << "\n[NUMBER TOO BIG]\n"
+                    << "Number you have entered: " << error.getDecimalError()
+                    << "\nEnter a value not more than [520000]\n"
+                    << "Please try again :}\n\n";
+                }
+                catch (IncorrectDecimal error) {
+                    cout << "\n[NUMBER IS NOT A DECIMAL VALUE]\n"
+                    << "Number you have entered: " << error.getDecimalError()
+                    << "\nPlease try again :}\n\n";
+                }
+            }
             break;
 
-        case 4:
-            cout << "Enter Decimal value: ";
-            cin >> userIntInput;
-            numberSystem.setIntValue(userIntInput);
+        case 2: case 8: case 54: case 512:
+            while (onLoop) {
+                try {
+                    cout << "Enter Binary value: ";
+                    cin >> userStringInput;
+                    validateBinaryValue(userStringInput);
+                    userIntInput = stoi(userStringInput);
+                    numberSystem.setIntValue(userIntInput);
+                    onLoop = false;
+                }
+                catch (BinaryOverloading error) {
+                    cout << "\n[NUMBER TOO BIG]\n"
+                    << "You have entered a value which has more than the maximum threshold [19]\n"
+                    << "Number of digits you have entered: " << error.getBinaryError()
+                    << "\nPlease try again :}\n\n";
+                }
+                catch (IncorrectBinary error) {
+                    cout << "\n[NUMBER IS NOT A BINARY VALUE]\n"
+                    << "Number you have entered: " << error.getBinaryError()
+                    << "\nPlease try again :}\n\n";
+                }
+            }
             break;
 
-        case 27:
-            cout << "Enter Decimal value: ";
-            cin >> userIntInput;
-            numberSystem.setIntValue(userIntInput);
+        case 3: case 12: case 81: case 768:
+            while (onLoop) {
+                try {
+                    cout << "Enter Octal Value: ";
+                    cin >> userStringInput;
+                    validateOctalValue(userStringInput);
+                    userIntInput = stoi(userStringInput);
+                    numberSystem.setIntValue(userIntInput);
+                    onLoop = false;
+                }
+                catch (OctalOverloading error) {
+                    cout << "\n[NUMBER TOO BIG]\n"
+                    << "You have entered a value which has more than the maximum threshold [6]\n"
+                    << "Number of digits you have entered: " << error.getOctalError()
+                    << "\nPlease try again :}\n\n";
+                }
+                catch (IncorrectOctal error) {
+                    cout << "\n[NUMBER IS NOT AN OCTAL VALUE]\n"
+                    << "Number you have entered: " << error.getOctalError()
+                    << "\nPlease try again :}\n\n";
+                }
+            }
             break;
 
-        case 256:
-            cout << "Enter Decimal value: ";
-            cin >> userIntInput;
-            numberSystem.setIntValue(userIntInput);
-            break;
-
-        case 2:
-            cout << "Enter Binary value: ";
-            cin >> userIntInput;
-            numberSystem.setIntValue(userIntInput);
-            break;
-
-        case 8:
-            cout << "Enter Binary Value: ";
-            cin >> userIntInput;
-            numberSystem.setIntValue(userIntInput);
-            break;
-
-        case 54:
-            cout << "Enter Binary Value: ";
-            cin >> userIntInput;
-            numberSystem.setIntValue(userIntInput);
-            break;
-
-        case 3:
-            cout << "Enter Octal Value: ";
-            cin >> userIntInput;
-            numberSystem.setIntValue(userIntInput);
-            break;
-
-        case 12:
-            cout << "Enter Octal Value: ";
-            cin >> userIntInput;
-            numberSystem.setIntValue(userIntInput);
-            break;
-
-        case 81:
-            cout << "Enter Octal Value: ";
-            cin >> userIntInput;
-            numberSystem.setIntValue(userIntInput);
-            break;
-
-        case 512:
-            cout << "Enter Binary Value: ";
-            cin >> userIntInput;
-            numberSystem.setIntValue(userIntInput);
-            break;
-
-        case 768:
-            cout << "Enter Octal Value: ";
-            cin >> userIntInput;
-            numberSystem.setIntValue(userIntInput);
-            break;
-
-        case 1024:
-            cout << "Enter Hexadecimal Value: ";
-            cin >> userStringInput;
-            numberSystem.setStringValue(userStringInput);
-            break;
-
-        case 523:
-            cout << "Enter Hexadecimal Value: ";
-            cin >> userStringInput;
-            numberSystem.setStringValue(userStringInput);
-            break;
-
-        case 16:
-            cout << "Enter Hexadecimal Value: ";
-            cin >> userStringInput;
-            numberSystem.setStringValue(userStringInput);
-            break;
-
-        case 108:
+        case 1024: case 523: case 16: case 108:
             cout << "Enter Hexadecimal Value: ";
             cin >> userStringInput;
             numberSystem.setStringValue(userStringInput);
@@ -453,4 +440,76 @@ void programInfo (){                          //a void function to display the i
 
 void exit (){                                       //function is called when the user wants to exit the program
     cout << "\n[END OF PROGRAM] Thank you for your patronage :>\n"; 
+}
+
+void validateDecimalValue(string value) {
+    bool allAreDigits = true;
+
+    for (int i = 0; i < value.size(); i++) {
+        if (!isdigit(value[i])) {
+            allAreDigits = false;
+        }
+    }
+
+    if (!allAreDigits) {
+        throw IncorrectDecimal(value);
+    }
+
+    int stringToInt = stoi(value);
+
+    if (stringToInt > 520000) {
+        throw DecimalOverloading(stringToInt);
+    }
+}
+
+void validateBinaryValue(string value) {
+    bool allDigitsAreValid = true;
+    int size = value.size();
+
+    for (int i = 0; i < size; i++) {
+        if (value[i] != '1' && value[i] != '0') {
+            allDigitsAreValid = false;
+        }
+    }
+
+    if (!allDigitsAreValid) {
+        throw IncorrectBinary(value);
+    }
+
+    if (size > 19) {
+        throw BinaryOverloading(size);
+    }
+}
+
+void validateOctalValue(string value) {
+    bool allDigitsAreValid = true;
+    int size = value.size(), tempInt;
+    string tempChar;
+
+    for (int i = 0; i < size; i++) {
+        if (!isdigit(value[i])) {
+            allDigitsAreValid = false;
+        }
+    }
+
+    if (!allDigitsAreValid) {
+        throw IncorrectOctal(value);
+    }
+
+    for (int i = 0; i < size; i++) {
+        tempChar = value[i];
+        tempInt = stoi(tempChar);
+
+        if (tempInt > 7 || tempInt < 0) {
+            allDigitsAreValid = false;
+        }
+    }
+
+    if (!allDigitsAreValid) {
+        throw IncorrectOctal(value);
+    }
+
+    if (size > 6) {
+        throw OctalOverloading(size);
+    }
 }
