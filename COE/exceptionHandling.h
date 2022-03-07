@@ -85,3 +85,39 @@ public:
         return this->intToStringOctalValue;
     }
 };
+
+class InvalidAction {
+private:
+    string invalidChoice1, invalidChoice2;
+    char invalidChoice;
+
+public:
+    InvalidAction(string userInput1, string userInput2) {
+        this->invalidChoice1 = userInput1;
+        this->invalidChoice2 = userInput2;
+    }
+    
+    InvalidAction(char userInput) {
+        this->invalidChoice1 = userInput;
+    }
+
+    InvalidAction(string userInput) {
+        this->invalidChoice1 = userInput;
+    }
+
+    string getInvalidAction() {
+        return this->invalidChoice1;
+    }
+
+    char getInvalidChoice() {
+        return this->invalidChoice;
+    }
+
+    string getInvalidChoice1() {
+        return this->invalidChoice1;
+    }
+
+    string getInvalidChoice2() {
+        return this->invalidChoice2;
+    }
+};

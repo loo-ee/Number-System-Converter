@@ -12,9 +12,12 @@ int main () {
     // newClass.setIntResult(val);
     // cout << "Value: " << newClass.getIntResult() << endl;
     int test;
+    char input;
 
-    cout << "Enter a int: ";
+    cout << "Enter an int: ";
     cin >> test;
+
+    
 
 
 }

@@ -24,14 +24,24 @@ void validateOctalValue(string);
 
 int main() {
     char choice;
+    bool onLoop = true;
     NumberSystem newNumberSystem;
 
-    cout << "\n[SELECT ACTION]\n"
-    << "[1] Proceed to the converter\n"
-    << "[2] Read info\n"
-    << ">> "; 
-    cin >> choice;
+    while (onLoop) {
+        cout << "\n[SELECT ACTION]\n"
+        << "[1] Proceed to the converter\n"
+        << "[2] Read info\n"
+        << ">> "; 
+        cin >> choice;
 
+        if (choice == '1' || choice == '2') {
+            onLoop = false;
+        }
+        else {
+            cout << "\n[INVALID CHOICE]\nPlease try again...\n";
+        }
+    }
+    
     switch (choice) {
         case '2':
             programInfo();
@@ -246,17 +256,30 @@ void firstPhase(NumberSystem &numberSystem) {
 
 void secondPhase(NumberSystem &numberSystem) {
     int c2;
+    bool onLoop = true;
+    string intToString;
     string numsys[] = {"Decimal", "Binary", "Octal", "Hexadecimal"};
 
     cout << endl;
 
-    for (int i = 0; i <4; i++) {
-        cout << "[" <<  i+1 << "] " << numsys[i] << endl;
+    while (onLoop) {
+        try {
+            for (int i = 0; i <4; i++) {
+                cout << "[" <<  i+1 << "] " << numsys[i] << endl;
+            }
+            cout << "\nWhat number system would you like to convert into?\n"
+            << ">> ";
+            cin >> intToString;
+            numberSystem.validateUserAction(intToString);
+            c2 = stoi(intToString);
+            onLoop = false;
+        }
+        catch (InvalidAction error) {
+            cout << "\n[INVALID ACTION]\n"
+            << "Choice you inputed: " << error.getInvalidAction()
+            << "\n\nPlease try again...\n";
+        }
     }
-    cout << "\nWhat number system would you like to convert into?\n"
-    << ">> ";
-    cin >> c2;
-
     numberSystem.choices(numberSystem.getSecondChoice(), c2);
     numberSystem.setSecondChoice(c2);
     numberSystem.setIntValue(numberSystem.getIntResult());
