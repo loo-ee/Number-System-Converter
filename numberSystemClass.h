@@ -110,7 +110,7 @@ void NumberSystem::setChoice() {
     string numsys[] = {"Decimal", "Binary", "Octal", "Hexadecimal"};
 
     cout << "\n**NUMBER SYSTEMS CONVERTER**\n"
-    << "Version 2.1.0 (Beta)\n"
+    << "Version 3.0.0 Alpha\n"
     << "TABLE: \n";
 
     for (int i = 0; i <4; i++) {
