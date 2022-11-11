@@ -1,2 +1,1 @@
-# Codes
-Edits before finalizing :)
+# Run "main.cpp"
